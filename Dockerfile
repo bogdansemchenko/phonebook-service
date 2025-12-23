@@ -35,6 +35,9 @@ WORKDIR /app
 COPY --from=builder /app/build/phonebook-service .
 COPY --from=builder /app/swagger-res ./swagger-res
 
+COPY --from=builder /app/build/run_tests .
+COPY --from=builder /app/build/run_benchmarks .
+
 EXPOSE 8000
 
 CMD ["./phonebook-service"]

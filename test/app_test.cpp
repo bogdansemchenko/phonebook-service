@@ -58,7 +58,7 @@ protected:
 TEST_F(PhonebookTest, FullContactLifecycle) {
     auto payload = ContactPayloadDto::createShared();
     payload->name = "Egor Gribanov";
-    payload->phone_number = "+375291112233";
+    payload->phone_number = "+375293451267";
     payload->address = "Minsk";
 
     auto resCreate = client->create_contact(payload);
@@ -133,13 +133,13 @@ TEST_F(PhonebookTest, StrictRegexValidation) {
     payload->phone_number = "+37529123456789"; 
     ASSERT_EQ(client->create_contact(payload)->getStatusCode(), 400);
 
-    payload->phone_number = "+375291234567"; 
+    payload->phone_number = "+375299999999"; 
     ASSERT_EQ(client->create_contact(payload)->getStatusCode(), 200);
 }
 
 TEST_F(PhonebookTest, RequiredFieldsValidation) {
     auto payload = ContactPayloadDto::createShared();
-    payload->phone_number = "+375291112233";
+    payload->phone_number = "+3752912233";
     payload->address = "Address";
     ASSERT_EQ(client->create_contact(payload)->getStatusCode(), 400);
     payload = ContactPayloadDto::createShared();

@@ -10,4 +10,5 @@ public:
     virtual oatpp::Object<ContactDto> get_by_id(v_int64 id) = 0;
     virtual oatpp::List<oatpp::Object<ContactDto>> get_all() = 0;
     virtual bool remove(v_int64 id) = 0;
+    virtual bool isPhoneNumberTaken(const oatpp::String& phoneNumber, const oatpp::Int64& skipId = nullptr) = 0;
 };

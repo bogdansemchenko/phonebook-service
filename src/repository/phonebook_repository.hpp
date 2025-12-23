@@ -47,6 +47,23 @@ public:
         return database_.erase(id) > 0;
     }
 
+    bool isPhoneNumberTaken(const oatpp::String& phoneNumber, const oatpp::Int64& skipId) override {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        
+        for (const auto& pair : database_) {
+            auto id = pair.first;
+            auto contact = pair.second;
+            if (skipId && id == *skipId) {
+                continue;
+            }
+            
+            if (contact->phone_number == phoneNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 private:
     void addTestData(const char* name, const char* phone, const char* address) {
         auto dto = ContactDto::createShared();

@@ -17,6 +17,13 @@ public:
 
   oatpp::Object<ContactDto> createContact(const oatpp::Object<ContactPayloadDto>& payload) {
     payload->validate(); 
+    
+    if (m_repository->isPhoneNumberTaken(payload->phone_number)) {
+        throw oatpp::web::protocol::http::HttpError(
+            oatpp::web::protocol::http::Status::CODE_409, 
+            "Phone number already exists"
+        );
+    }
 
     auto newContact = ContactDto::createShared();
     newContact->id = (v_int64)0;
@@ -34,6 +41,13 @@ public:
     }
 
     payload->validate(); 
+
+    if (m_repository->isPhoneNumberTaken(payload->phone_number, id)) {
+        throw oatpp::web::protocol::http::HttpError(
+            oatpp::web::protocol::http::Status::CODE_409, 
+            "Phone number already exists"
+        );
+    }
 
     if (existing->name == payload->name && 
         existing->phone_number == payload->phone_number && 

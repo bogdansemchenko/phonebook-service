@@ -38,6 +38,7 @@ public:
     info->addConsumes<Object<ContactPayloadDto>>("application/json"); 
     info->addResponse<Object<ContactDto>>(Status::CODE_200, "application/json"); 
     info->addResponse<Object<StatusDto>>(Status::CODE_400, "application/json");
+    info->addResponse<Object<StatusDto>>(Status::CODE_409, "application/json");
   }
   ENDPOINT("POST", "/contacts", createContact, BODY_DTO(Object<ContactPayloadDto>, payload)) {
     return createDtoResponse(Status::CODE_200, m_service.createContact(payload));
@@ -49,6 +50,7 @@ public:
     info->addResponse<Object<ContactDto>>(Status::CODE_200, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_404, "application/json");
     info->addResponse<Object<StatusDto>>(Status::CODE_400, "application/json");
+    info->addResponse<Object<StatusDto>>(Status::CODE_409, "application/json");
   }
   ENDPOINT("PUT", "/contacts/{contactId}", updateContact, PATH(Int64, contactId), BODY_DTO(Object<ContactPayloadDto>, payload)) {
     return createDtoResponse(Status::CODE_200, m_service.updateContact(contactId, payload));

@@ -41,7 +41,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/test/app_test.cpp")
 
     add_executable(run_tests test/app_test.cpp ${TEST_LIB_SOURCES})
     target_include_directories(run_tests PRIVATE src)
-    target_compile_definitions(run_tests PRIVATE SWAGGER_RES_PATH="${CMAKE_BINARY_DIR}/swagger-res")
+    target_compile_definitions(run_tests PRIVATE SWAGGER_RES_PATH="swagger-res")
     target_link_libraries(run_tests PRIVATE 
         GTest::gtest_main
         oatpp::oatpp
@@ -59,7 +59,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/test/benchmark_test.cpp")
 
     add_executable(run_benchmarks test/benchmark_test.cpp ${BENCH_LIB_SOURCES})
     target_include_directories(run_benchmarks PRIVATE src)
-    target_compile_definitions(run_benchmarks PRIVATE SWAGGER_RES_PATH="${CMAKE_BINARY_DIR}/swagger-res")
+    target_compile_definitions(run_benchmarks PRIVATE SWAGGER_RES_PATH="swagger-res")
     
     target_link_libraries(run_benchmarks PRIVATE 
         GTest::gtest_main
