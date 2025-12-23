@@ -19,7 +19,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone [https://github.com/bogdansemchenko/phonebook-service.git](https://github.com/bogdansemchenko/phonebook-service.git)
+git clone https://github.com/bogdansemchenko/phonebook-service.git
 cd phonebook-service
 ```
 ### 2. Запуск приложения
